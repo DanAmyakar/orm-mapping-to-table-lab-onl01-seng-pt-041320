@@ -37,7 +37,7 @@ class Student
     DB[:conn].execute(sql)
   end
   
-  
+  # Writes an instace of student to the student table (which creates a values for id)
   def save
     sql = <<-SQL
       INSERT INTO students (name, grade)
@@ -45,6 +45,7 @@ class Student
     SQL
     
     DB[:conn].execute(sql, self.name, self.grade)
+    self
   end
   
   # Creates a new student instance with a name and grade, saves it to the table, gets and writes the id to the new instance @id value and returns the student instance with all three instance values
