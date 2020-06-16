@@ -49,11 +49,12 @@ class Student
     DB[:conn].execute(sql, self.name, self.grade)
     
     # Second part gets the id from the table for the new student record and assigns it to the instance variable @id
-    self.id = <<-SQL
+    this_id = <<-SQL
       SELECT students.id FROM students DESC LIMIT 1;
       SQL
       
-    DB[:conn].execute(self.id)
+    DB[:conn].execute(this_id)
+    @id = this_id
   end
   
   # Creates a new student instance with a name and grade, saves it to the table, gets and writes the id to the new instance @id value and returns the student instance with all three instance values
