@@ -50,10 +50,10 @@ class Student
     
     # Second part gets the id from the table for the new student record and assigns it to the instance variable @id
     this_id = <<-SQL
-      SELECT students.id FROM students DESC LIMIT 1;
+      SELECT students.id FROM students WHERE students.name = "?";
       SQL
       
-    DB[:conn].execute(this_id)
+    DB[:conn].execute(this_id, self.name)
     @id = this_id
   end
   
