@@ -11,27 +11,27 @@ class Student
   
   def self.create_table
     sql <<- SQL
-      CREATE TABLE students(
+      CREATE TABLE IF NOT EXITS students(
         id INTEGER PRIMARY KEY,
         name TEXT,
-        grade TEXT);
-      SQL  
+        grade TEXT)
+        SQL  
       DB[:conn].execute(sql)
     end
   end
   
   def self.drop_table
     sql <<- SQL
-      DROP TABLE students;
-    SQL  
+      DROP TABLE students
+      SQL  
     DB[:conn].execute(sql)
   end
   
   def save
     sql <<- SQL
       INSERT INTO students (id, name, grade)
-      VALUES (@id, @name, @grade);
-    SQL
+      VALUES (@id, @name, @grade)
+      SQL
     DB[:conn].execute(sql, self.id, self.name, self.grade)
   end
   
@@ -40,5 +40,4 @@ class Student
     student.save
   end
     
-      
 end
