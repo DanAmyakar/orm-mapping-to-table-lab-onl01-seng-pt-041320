@@ -45,7 +45,7 @@ class Student
     SQL
     
     DB[:conn].execute(sql, self.name, self.grade)
-    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")
   end
   
   # Creates a new student instance with a name and grade, saves it to the table, gets and writes the id to the new instance @id value and returns the student instance with all three instance values
