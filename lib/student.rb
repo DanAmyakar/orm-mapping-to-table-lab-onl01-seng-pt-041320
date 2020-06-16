@@ -15,18 +15,17 @@ class Student
         id INTEGER PRIMARY KEY,
         name TEXT,
         grade TEXT);
-        
+      SQL  
       DB[:conn].execute(sql)
-      SQL
     end
   end
   
   def self.drop_table
     sql <<- SQL
       DROP TABLE students;
-      
-      DB[:conn].execute(sql)
-    SQL
+    SQL  
+    DB[:conn].execute(sql)
+    
   end
   
   def save
