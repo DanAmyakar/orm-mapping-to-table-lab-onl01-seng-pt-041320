@@ -38,23 +38,7 @@ class Student
   end
   
   
-  # Two part method
-  def save
-    # First part writes the new instance of student w/o an id value to the table
-    sql = <<-SQL
-      INSERT INTO students(name, grade)
-      VALUES (?, ?);
-      SQL
-      
-    DB[:conn].execute(sql, self.name, self.grade)
-    # Second part gets the id from the table for the new student record and assigns it to the instance variable @id
-    this_id = <<-SQL
-      SELECT students.id FROM students WHERE students.name = "?";
-      SQL
-      
-    DB[:conn].execute(this_id, self.name)
-    @id= this_id
-  end
+  
   
   # Creates a new student instance with a name and grade, saves it to the table, gets and writes the id to the new instance @id value and returns the student instance with all three instance values
   def self.create(name:, grade:)
